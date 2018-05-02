@@ -1,51 +1,5 @@
 // last midi details sent
 
-void mainLoop() {
-
-  //startUpAnimation();
-
-  while (1 == 1) {
-    
-    bool patternPlayed[9] = {false, false, false, false, false, false, false, false, false};
-    
-    while (!(patternPlayed[0] && patternPlayed[1] && patternPlayed[2] && patternPlayed[3]
-          && patternPlayed[4] && patternPlayed[5] && patternPlayed[6] && patternPlayed[7] 
-          && patternPlayed[8])) {
-      int randy = random(9); 
-      if (patternPlayed[randy])
-        break;
-  
-      //SinusoidalDisco();
-      //KnightriderStuff();
-      GlitchRainbow ();
-      /*
-      if (randy == 0)
-        NiceFades();
-      else if (randy == 1) 
-        SinusoidalDisco();
-      else if (randy == 2)
-        KnightriderStuff();
-      else if (randy == 3)
-        ShowEyes();
-      else if (randy == 4)
-        DoDroplets();
-      else if (randy == 5)
-        SwipeInPieces();
-      else if (randy == 5)
-        RainbowOne();
-      else if (randy == 6)
-        RainbowTwo();
-      else if (randy == 7)
-        DiscoSixteen();
-      else if (randy == 8)
-        GlitchRainbow();
-        
-*/
-        
-      patternPlayed[randy] = true;
-    }
-  }
-}
 
 /* Helper functions */
 // Create a 24 bit color value from R,G,B
@@ -58,13 +12,6 @@ uint32_t Color(byte r, byte g, byte b)
   c <<= 8;
   c |= b;
   return c;
-}
-
-void startUpAnimation() {
-  fadeToColour(5, Color(255, 255, 255));
-  fadeToColour(0, Color(255, 0, 0));
-  fadeToColour(0, Color(0, 255, 0));
-  fadeToColour(0, Color(0, 0, 255));
 }
 
 void NiceFades() {
@@ -90,7 +37,7 @@ void fadeToColour(int delayTime, uint32_t fadeToColour) {
     for(short i=0; i<numLeds; i++) {
       setAdjustedPixelColor(i, j / 2000.0f, fadeToColour);
     }
-    LEDS.show();
+    endCycleShowLeds();
     delay(delayTime);
   }
 }
@@ -99,10 +46,12 @@ void AllOff() {
   for(uint16_t i=0; i<numLeds; i++) {
     rgbLeds[i] = CRGB( 0, 0, 0);
   }
-  LEDS.show();
 }
 
 void setLedByInt(int ledNum, uint32_t color) {
+  if (ledNum < 1 || ledNum > numLeds)
+    return;
+  
   uint8_t newR = (color >> 16),
   newG = (color >>  8),
   newB = (color);
@@ -112,8 +61,10 @@ void setLedByInt(int ledNum, uint32_t color) {
 }
 
 
-void setAdjustedPixelColor(int pixel, float opicaityFactor, uint32_t newCol)  
-{
+void setAdjustedPixelColor(int pixel, float opicaityFactor, uint32_t newCol) {
+  if (pixel < 1 || pixel > numLeds)
+    return;
+      
   uint8_t newR = (newCol >> 16),
   newG = (newCol >>  8),
   newB = (newCol);
@@ -151,7 +102,7 @@ void colorWipe(uint32_t c, uint8_t wait) {
   for(uint16_t i=0; i<numLeds; i++) {
       //setLedByInt(i, c);
       setLedByInt(i, c);
-      LEDS.show();
+      endCycleShowLeds();
       delay(wait);
   }
 }

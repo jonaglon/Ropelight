@@ -1,12 +1,12 @@
 
 uint32_t sixteenColours[16];
-short sixteenthInterval = numLeds / 16;    
+short sixteenthInterval = numLeds / 64;    
 short beatChangeVar = 0;
 short drumBeatTimer = 0;
 
 void DiscoSixteen() {
   int delayTime;
-  int delayRnd = random(3);
+  int delayRnd = 1; // random(3);
   if (delayRnd == 0) {
     delayTime = 7;
   } else if (delayRnd == 1) {
@@ -17,9 +17,8 @@ void DiscoSixteen() {
   
   for (int count = 0; count < 1000; count ++) {
     discoBackgroundOne();
-    LEDS.show();
+    endCycleShowLeds();
     incrementDrumBeat(delayTime);
-    incrementTotalTicks();
   }
 }
 

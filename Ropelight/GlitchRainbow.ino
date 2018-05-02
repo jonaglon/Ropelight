@@ -1,10 +1,8 @@
 
 void GlitchRainbow () {
     for(int j=0; j<2000; j++) {
-      rainbow(0.8);
+      rainbow();
       AddGlitchToRainbow();
-      incrementTotalTicks();
-      LEDS.show();
       delay(0);
     }
 }

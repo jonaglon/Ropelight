@@ -1,9 +1,9 @@
 
-  void SwipeInPieces() {
+void SwipeInPieces() {
   fadeToColour(2, goodRandomColour());
   for (int e = 0; e < 8; e++) {
-    int delayTime = random(5, 40);
-    doSwipe(random(2,10), goodRandomColour(), delayTime);
+    int delayTime = 10; // random(5, 40);
+    doSwipe(random(4,32), goodRandomColour(), delayTime);
     delay(delayTime);
   }
 }
@@ -16,7 +16,7 @@ void doSwipe(int numPieces, uint32_t swipeColour, int delaytime)
        {
            setLedByInt(sipPos+(numLeds/numPieces*e), swipeColour);
        }
-       LEDS.show();
+       endCycleShowLeds();
        delay(delaytime);       
    }
 }

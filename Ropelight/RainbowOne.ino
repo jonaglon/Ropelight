@@ -1,18 +1,28 @@
 
 void RainbowOne() {
   
-    int delayTime = random(16, 24);
+    // int delayTime = 20; // random(16, 24);
  
     for(int j=0; j<2000; j++) {
-      rainbow(20 - delayTime);
-      incrementTotalTicks();
-      LEDS.show();
-      delay(delayTime);
+      rainbow();
+      endCycleShowLeds();
+      delay(20);
     } 
 }
 
 
-void rainbow(double speedFactor) {
+void rainbow() {
+  int j;
+  int pixNum;
+  
+  // forward
+  j = 255 - (totalTicks % 255);
+  for(pixNum=0; pixNum<numLeds; pixNum++) {
+    setLedByInt(pixNum, Wheel((pixNum+j) & 255));
+  }
+}
+
+void rainbowInefficient(double speedFactor) {
   int j;
   int pixNum;
   

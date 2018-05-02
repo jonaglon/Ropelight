@@ -1,3 +1,5 @@
+byte currentBarWheelColour = 0;
+byte currentBackgroundWheelColour = 128;
 
 void KnightriderStuff() {
 
@@ -22,7 +24,7 @@ void showSinusoidal(int barWidth, int delaytime, float stepsize, boolean resetBa
         while (angle < 2 * PI)
         {
             // calculate x, y from a vector with known length and angle
-            x = (numLeds - 88) / 2 * sin (angle);
+            x = (((numLeds/4) - 88) / 2) * sin (angle);
     
             nextPos = x + middlePos;
             angle += angle_stepsize;
@@ -31,11 +33,11 @@ void showSinusoidal(int barWidth, int delaytime, float stepsize, boolean resetBa
             currentBackgroundColour = getNextBackgroundWheelColour();
             if (currentBarColour == currentBackgroundColour)
               return;
-              
-            showKnightRiderBarAt(nextPos, Wheel(currentBarColour), DarkWheel(currentBackgroundColour), barWidth, resetBackground, doDaveColours);  
-            LEDS.show();
+
+            for (int x=0; x<4; x++) {
+              showKnightRiderBarAt((x*300)+nextPos, Wheel(currentBarColour), DarkWheel(currentBackgroundColour), barWidth, resetBackground, doDaveColours);  
+            }
             delay(delaytime);
-            incrementTotalTicks();
         }    
     }
 }
@@ -65,7 +67,7 @@ byte getNextBackgroundWheelColour()
 void showKnightRiderBarAt(int i, uint32_t barColour, uint32_t bgColour, int barWidth, boolean resetBackground, boolean doDaveColours)
 {
   if (resetBackground) {
-    for(uint16_t j=0; j<numLeds; j++) {
+    for(uint16_t j=0; j<(numLeds/4); j++) {
       setLedByInt(j, bgColour);
     }
   }

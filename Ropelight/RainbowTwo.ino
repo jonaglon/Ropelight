@@ -1,6 +1,6 @@
 
 void RainbowTwo() {
-  int delayTime = random(4);
+  int delayTime = 20; // random(4);
   if (delayTime == 0) {
     rainbowCycle(0);
   } else if (delayTime == 1) {
@@ -24,7 +24,7 @@ void rainbowCycle(uint8_t wait) {
         //pixelColor = 256 - (j - 256);
       setLedByInt(i, Wheel(((i * pixelColor / numLeds) + pixelColor) & 255));
     }
-    LEDS.show();
+    endCycleShowLeds();
     delay(wait);
   }
 }
