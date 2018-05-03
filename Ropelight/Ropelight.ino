@@ -24,20 +24,20 @@ void setup() {
   
   LEDS.addLeds<NEOPIXEL, 7>(rgbLeds, numLeds); // Hardcoded to ports:25,26,27,28,14,15
   LEDS.setBrightness(128); // 128 good max, 255 actual /max
-  
 }
+
+// todo - sort sinusoidal disco, make disco sixteen faster
 
 void loop() {    
   while (1 == 1) {
-    SwipeInPieces();
     NiceFades();
-    SinusoidalDisco();
     RainbowOne();
-    SwipeInPieces();
+    KnightriderStuff();
     RainbowTwo();
     DiscoSixteen();
+    SinusoidalDisco();
     GlitchRainbow();
-    KnightriderStuff();
+    SwipeInPieces();
   }
 }
 

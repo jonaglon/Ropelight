@@ -1,9 +1,17 @@
 
-void GlitchRainbow () {
+void GlitchRainbow() {
+   int chance = random(4);     
+  
     for(int j=0; j<2000; j++) {
-      rainbow();
+      if (chance == 1)
+        rainbowFast();
+      else if (chance ==2)
+        rainbowBackward();
+      else
+        rainbow();
+        
       AddGlitchToRainbow();
-      delay(0);
+      endCycleShowLeds();
     }
 }
 

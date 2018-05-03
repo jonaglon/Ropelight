@@ -1,8 +1,5 @@
 
 void RainbowOne() {
-  
-    // int delayTime = 20; // random(16, 24);
- 
     for(int j=0; j<2000; j++) {
       rainbow();
       endCycleShowLeds();
@@ -22,26 +19,25 @@ void rainbow() {
   }
 }
 
-void rainbowInefficient(double speedFactor) {
+void rainbowFast() {
   int j;
   int pixNum;
   
-  int tachoPosition = totalTicks;
+  // forward
+  j = 255 - ((totalTicks*2) % 255);
+  for(pixNum=0; pixNum<numLeds; pixNum++) {
+    setLedByInt(pixNum, Wheel((pixNum+j) & 255));
+  }
+}
 
-  if (speedFactor < 0) {
-    speedFactor = sqrt (speedFactor * speedFactor);
-    j = (tachoPosition % (int)(256 / speedFactor)) * speedFactor;
-    for(pixNum=0; pixNum<numLeds; pixNum++) {
-      setLedByInt(pixNum, Wheel((pixNum+j) & 255));
-    }
+
+void rainbowBackward() {
+  int pixNum;
+  
+  for(pixNum=0; pixNum<numLeds; pixNum++) {
+    setLedByInt(pixNum, Wheel((pixNum+(totalTicks % 256)) & 255));
   }
-  else {
-    // forward
-    j = 256 - ((tachoPosition % (int)(256 / speedFactor)) * speedFactor);
-    for(pixNum=0; pixNum<numLeds; pixNum++) {
-      setLedByInt(pixNum, Wheel((pixNum+j) & 255));
-    }
-  }
+
 }
 
 

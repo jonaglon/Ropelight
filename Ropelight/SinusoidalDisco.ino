@@ -22,36 +22,39 @@ void sinusoidalDiscoPattern() {
     setLedByInt(j, Color(0,0,0));
 
   for (int x=0; x<4; x++) {
-    showBarAt((x*300)+nextPos - 360, Wheel(getNextBarWheelColour1()), 4);  
-    showBarAt((x*300)+nextPos - 330, Wheel(getNextBarWheelColour2()), 4);  
-    showBarAt((x*300)+nextPos - 300, Wheel(getNextBarWheelColour3()), 4);  
-    showBarAt((x*300)+nextPos - 270, Wheel(getNextBarWheelColour4()), 4);  
-    showBarAt((x*300)+nextPos - 240, Wheel(getNextBarWheelColour1()), 4);  
-    showBarAt((x*300)+nextPos - 210, Wheel(getNextBarWheelColour2()), 4);  
-    showBarAt((x*300)+nextPos - 180, Wheel(getNextBarWheelColour3()), 4);  
-    showBarAt((x*300)+nextPos - 150, Wheel(getNextBarWheelColour4()), 4);  
-    showBarAt((x*300)+nextPos - 120, Wheel(getNextBarWheelColour1()), 4);  
-    showBarAt((x*300)+nextPos - 90, Wheel(getNextBarWheelColour2()), 4);  
-    showBarAt((x*300)+nextPos - 60, Wheel(getNextBarWheelColour3()), 4);  
-    showBarAt((x*300)+nextPos - 30, Wheel(getNextBarWheelColour4()), 4);  
-    showBarAt((x*300)+nextPos, Wheel(getNextBarWheelColour1()), 4);  
-    showBarAt((x*300)+nextPos + 30, Wheel(getNextBarWheelColour2()), 4);  
-    showBarAt((x*300)+nextPos + 60, Wheel(getNextBarWheelColour3()), 4);  
-    showBarAt((x*300)+nextPos + 90, Wheel(getNextBarWheelColour4()), 4);  
-    showBarAt((x*300)+nextPos + 120, Wheel(getNextBarWheelColour1()), 4);  
-    showBarAt((x*300)+nextPos + 150, Wheel(getNextBarWheelColour2()), 4);  
-    showBarAt((x*300)+nextPos + 180, Wheel(getNextBarWheelColour3()), 4);  
-    showBarAt((x*300)+nextPos + 210, Wheel(getNextBarWheelColour4()), 4);  
-    showBarAt((x*300)+nextPos + 240, Wheel(getNextBarWheelColour1()), 4);  
-    showBarAt((x*300)+nextPos + 270, Wheel(getNextBarWheelColour2()), 4);  
-    showBarAt((x*300)+nextPos + 300, Wheel(getNextBarWheelColour3()), 4);  
-    showBarAt((x*300)+nextPos + 330, Wheel(getNextBarWheelColour4()), 4);  
-    showBarAt((x*300)+nextPos + 360, Wheel(getNextBarWheelColour1()), 4);  
+    showBarAt((x*300)+(nextPos - 360), Wheel(getNextBarWheelColour1()), 4);  
+    showBarAt((x*300)+(nextPos - 330), Wheel(getNextBarWheelColour2()), 4);  
+    showBarAt((x*300)+(nextPos - 300), Wheel(getNextBarWheelColour3()), 4);  
+    showBarAt((x*300)+(nextPos - 270), Wheel(getNextBarWheelColour4()), 4);  
+    showBarAt((x*300)+(nextPos - 240), Wheel(getNextBarWheelColour1()), 4);  
+    showBarAt((x*300)+(nextPos - 210), Wheel(getNextBarWheelColour2()), 4);  
+    showBarAt((x*300)+(nextPos - 180), Wheel(getNextBarWheelColour3()), 4);  
+    showBarAt((x*300)+(nextPos - 150), Wheel(getNextBarWheelColour4()), 4);  
+    showBarAt((x*300)+(nextPos - 120), Wheel(getNextBarWheelColour1()), 4);  
+    showBarAt((x*300)+(nextPos - 90), Wheel(getNextBarWheelColour2()), 4);  
+    showBarAt((x*300)+(nextPos - 60), Wheel(getNextBarWheelColour3()), 4);  
+    showBarAt((x*300)+(nextPos - 30), Wheel(getNextBarWheelColour4()), 4);  
+    showBarAt((x*300)+(nextPos), Wheel(getNextBarWheelColour1()), 4);  
+    showBarAt((x*300)+(nextPos + 30), Wheel(getNextBarWheelColour2()), 4);  
+    showBarAt((x*300)+(nextPos + 60), Wheel(getNextBarWheelColour3()), 4);  
+    showBarAt((x*300)+(nextPos + 90), Wheel(getNextBarWheelColour4()), 4);  
+    showBarAt((x*300)+(nextPos + 120), Wheel(getNextBarWheelColour1()), 4);  
+    showBarAt((x*300)+(nextPos + 150), Wheel(getNextBarWheelColour2()), 4);  
+    showBarAt((x*300)+(nextPos + 180), Wheel(getNextBarWheelColour3()), 4);  
+    showBarAt((x*300)+(nextPos + 210), Wheel(getNextBarWheelColour4()), 4);  
+    showBarAt((x*300)+(nextPos + 240), Wheel(getNextBarWheelColour1()), 4);  
+    showBarAt((x*300)+(nextPos + 270), Wheel(getNextBarWheelColour2()), 4);  
+    showBarAt((x*300)+(nextPos + 300), Wheel(getNextBarWheelColour3()), 4);  
+    showBarAt((x*300)+(nextPos + 330), Wheel(getNextBarWheelColour4()), 4);  
+    showBarAt((x*300)+(nextPos + 360), Wheel(getNextBarWheelColour1()), 4);  
   }
 }
 
 void showBarAt(int i, uint32_t barColour, int barWidth)
 {
+  if (i > 300 || i < 0)
+    return;
+  
   for (int x=1; x<barWidth; x++) {
     setLedByInt(i-x, barColour);
   }
